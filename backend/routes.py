@@ -59,12 +59,13 @@ def get_picture_by_id(id):
 @app.route("/picture", methods=["POST"])
 def create_picture():
     query = request.json
+    print(query)
     id = query['id']
     for picture in data:
         if id == picture['id']:
             return {"Message": f"picture with id {picture['id']} already present"},302
     data.append(query)        
-    return {"message": "succes"}, 200
+    return query, 201
         
         
        
@@ -82,6 +83,7 @@ def update_picture(id):
     for picture in data :
         if picture["id"] == id:
            picture.update(query)
+           return picture,201
         else : return {"message": "picture not found"},404    
             
    
@@ -95,7 +97,7 @@ def delete_picture(id):
         for picture in data:
             if picture['id'] == id:
                 del picture
-                return {"message":"message"},204
+                return '',204
             else:    
                 return {"message": "picture not found"},404
 
