@@ -46,7 +46,7 @@ def test_post_picture(picture, client):
     # create a brand new picture to upload
     res = client.post("/picture", data=json.dumps(picture),
                       content_type="application/json")
-    assert res.status_code == 200
+    assert res.status_code == 201
     id = res.json['id'] = 200
     assert id == picture['id']
     res = client.get("/count")
