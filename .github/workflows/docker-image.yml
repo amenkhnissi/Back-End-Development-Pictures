@@ -17,6 +17,7 @@ jobs:
     - name: Build the Docker image
       run: |
            docker build . --file Dockerfile --tag amenkhnissi/docker-test:Back-End-Development-Pictures    
+           docker login -u amenkhnissi -p ${{ secrets.DOCKER_PASS }} amenkhnissi/docker-test
            docker push amenkhnissi/docker-test:Back-End-Development-Pictures
            echo "Successfully pushed"
       
